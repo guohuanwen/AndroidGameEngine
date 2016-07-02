@@ -13,20 +13,20 @@ public abstract class BaseSprite {
     //类型
     public int type;
     //是否死亡
-    public boolean isAlive;
+    public boolean isAlive = true;
     //是否碰撞
-    public boolean isCollidable;
+    public boolean isCollidable = true;
     //是否可见
-    public boolean isVisible;
+    public boolean isVisible = true;
     //纹理
     public BaseTexture texture;
     //宽高，坐标
-    public int width,heightx,x,y;
+    public float width=100,heightx=100,x = 100,y=100;
     //绘制区域
     public RectF rectF;
     //画笔
     public Paint paint;
 
-    protected abstract void draw(Canvas canvas);
+    public abstract void draw(Canvas canvas);
 
 }

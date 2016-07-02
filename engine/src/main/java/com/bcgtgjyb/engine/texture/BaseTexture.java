@@ -19,9 +19,15 @@ public class BaseTexture {
     //画笔(必选实现)
     public Paint paint;
 
-    public void draw(Canvas canvas, RectF rectF){
+    public void drawBitmap(Canvas canvas, RectF rectF){
         if (bitmap != null){
             canvas.drawBitmap(bitmap,rect,rectF,paint);
+        }
+    }
+
+    public void drawText(Canvas canvas,int x,int y){
+        if (text != null){
+            canvas.drawText(text,x,y,paint);
         }
     }
 }
