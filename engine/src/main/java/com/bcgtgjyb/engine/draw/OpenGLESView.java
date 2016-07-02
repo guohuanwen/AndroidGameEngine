@@ -1,6 +1,7 @@
 package com.bcgtgjyb.engine.draw;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.bcgtgjyb.engine.R;
+import com.bcgtgjyb.engine.map.BaseMap;
 import com.bcgtgjyb.engine.sprite.MoveSprite;
 import com.bcgtgjyb.engine.texture.BaseTexture;
 
@@ -22,7 +24,9 @@ public class OpenGLESView extends View {
 
     private Context mContext;
     private MoveSprite sprite;
+    private BaseMap baseMap;
     private String TAG = OpenGLESView.class.getSimpleName();
+    private Bitmap bitmap;
 
     public OpenGLESView(Context context) {
         super(context);
@@ -38,6 +42,8 @@ public class OpenGLESView extends View {
 
     private void init() {
         Log.i(TAG, "init: ");
+        bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher);
+
         sprite = new MoveSprite();
         BaseTexture texture = new BaseTexture();
         texture.bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_launcher);
@@ -49,6 +55,7 @@ public class OpenGLESView extends View {
         sprite.texture = texture;
         sprite.rectF = new RectF(100,100,500,500);
 
+        baseMap = new BaseMap();
         initThread();
     }
 
@@ -76,6 +83,7 @@ public class OpenGLESView extends View {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        baseMap.draw(canvas,bitmap);
         sprite.draw(canvas);
     }
 
