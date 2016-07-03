@@ -29,4 +29,8 @@ public abstract class BaseSprite {
 
     public abstract void draw(Canvas canvas);
 
+    //碰撞回调
+    public interface Callback{
+        void collidable(int type1,int tpye2);
+    }
 }

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.bcgtgjyb.engine.R;
+import com.bcgtgjyb.engine.camera.BaseCamera;
 import com.bcgtgjyb.engine.map.BaseMap;
 import com.bcgtgjyb.engine.sprite.MoveSprite;
 import com.bcgtgjyb.engine.texture.BaseTexture;
@@ -27,6 +28,7 @@ public class OpenGLESView extends View {
     private BaseMap baseMap;
     private String TAG = OpenGLESView.class.getSimpleName();
     private Bitmap bitmap;
+    private BaseCamera camera;
 
     public OpenGLESView(Context context) {
         super(context);
@@ -56,6 +58,8 @@ public class OpenGLESView extends View {
         sprite.rectF = new RectF(100,100,500,500);
 
         baseMap = new BaseMap();
+
+        camera = new BaseCamera();
         initThread();
     }
 
@@ -83,6 +87,7 @@ public class OpenGLESView extends View {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        camera.lookSprite(canvas,sprite);
         baseMap.draw(canvas,bitmap);
         sprite.draw(canvas);
     }
