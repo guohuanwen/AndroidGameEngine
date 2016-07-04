@@ -16,6 +16,7 @@ import com.bcgtgjyb.engine.R;
 import com.bcgtgjyb.engine.camera.BaseCamera;
 import com.bcgtgjyb.engine.map.BaseMap;
 import com.bcgtgjyb.engine.sprite.MoveSprite;
+import com.bcgtgjyb.engine.sprite.SnakeSprite;
 import com.bcgtgjyb.engine.texture.BaseTexture;
 
 /**
@@ -29,6 +30,7 @@ public class OpenGLESView extends View {
     private String TAG = OpenGLESView.class.getSimpleName();
     private Bitmap bitmap;
     private BaseCamera camera;
+    private SnakeSprite snakeSprite;
 
     public OpenGLESView(Context context) {
         super(context);
@@ -60,6 +62,9 @@ public class OpenGLESView extends View {
         baseMap = new BaseMap();
 
         camera = new BaseCamera();
+
+        snakeSprite = new SnakeSprite();
+
         initThread();
     }
 
@@ -87,12 +92,13 @@ public class OpenGLESView extends View {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        camera.lookSprite(canvas,sprite);
+        camera.lookSprite(canvas,snakeSprite);
         baseMap.draw(canvas,bitmap);
-        sprite.draw(canvas);
+        snakeSprite.draw(canvas);
+//        sprite.draw(canvas);
     }
 
     public void setDegree(float degree){
-        sprite.degree = degree;
+        snakeSprite.degree = degree;
     }
 }
